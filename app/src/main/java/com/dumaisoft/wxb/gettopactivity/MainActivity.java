@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                     android.os.Process.myUid(), getPackageName());
+            //this line added by wjf, used to enalbe permisson GET_USAGE_STAS without user interact on SETTING PAGE.
+            appOps.setMode(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                    android.os.Process.myUid(), getPackageName(),AppOpsManager.MODE_ALLOWED);
         }
         return mode == AppOpsManager.MODE_ALLOWED;
     }
